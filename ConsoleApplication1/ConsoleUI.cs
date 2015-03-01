@@ -10,7 +10,7 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
-            int size,size2,element, key;
+            int size,size2,element;
             bool order = true;
             //The Initialization of a Ragged Array 
             Console.WriteLine("Hi! Please, input the array size: ");
