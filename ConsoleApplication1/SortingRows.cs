@@ -10,6 +10,7 @@ namespace Sorting
     {
         public static int[][] BubbleSort( int[][] array, int[] arrayForSort, bool course)
         {
+            int [] tempArray;
 
             for (int i = 0; i < arrayForSort.Length; i++)
             {
@@ -20,7 +21,9 @@ namespace Sorting
                         if (arrayForSort[j] < arrayForSort[i])
                         {
                             Swap(ref arrayForSort[j], ref arrayForSort[i]);
-                            Swap(ref array[j], ref array[i]);
+                            tempArray = array[j];
+                            array[j] = array[i];
+                            array[i] = tempArray;
                         }
                     }
                     else
@@ -28,7 +31,9 @@ namespace Sorting
                         if (arrayForSort[j] > arrayForSort[i])
                         {
                             Swap(ref arrayForSort[j], ref arrayForSort[i]);
-                            Swap(ref array[j], ref array[i]);
+                            tempArray = array[j];
+                            array[j] = array[i];
+                            array[i] = tempArray;
                         }
                     }
                 }
@@ -48,7 +53,7 @@ namespace Sorting
            {
                arrayForSort[i] = array[i].Sum();
            }
-           BubbleSort(ref int [][]array, int []arrayForSort, course);
+           BubbleSort( array, arrayForSort, course);
            return array;
        }
         public static int[][] SortByMax(int[][] array, bool course) 
@@ -58,7 +63,7 @@ namespace Sorting
            {
                arrayForSort[i] = array[i].Max();
             }
-           BubbleSort(ref int [][]array, int []arrayForSort, course);
+           BubbleSort(array, arrayForSort, course);
            return array;
        }
 
@@ -69,7 +74,7 @@ namespace Sorting
            {
                arrayForSort[i] = array[i].Min();
             }
-           BubbleSort(ref int [][]array, int []arrayForSort, course);
+           BubbleSort(array, arrayForSort, course);
            return array;
        }
 
