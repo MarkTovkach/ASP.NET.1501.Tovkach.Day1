@@ -55,7 +55,7 @@ namespace Newton
                     k = Console.ReadLine();
                 }
                 accuracyOfComparison = Convert.ToDouble(k);
-                if (Math.Abs(baseNumber - Math.Pow(NewtonMethod.RootOfNDegree(baseNumber, indexNumber, accuracy), indexNumber)) < accuracyOfComparison)
+                if (Math.Abs(baseNumber - Math.Pow(NewtonMethod.RootOfNDegree(baseNumber, indexNumber, accuracy), -1*indexNumber)) < accuracyOfComparison)
                 {
                     Console.WriteLine("After comparing your result is true with this accuracy.");
                     Console.ReadKey();

@@ -82,6 +82,13 @@ namespace Sorting
                 case 3: SortingRows.SortByMax(jaggedArray, order);
                     break;
             }
+            for (int i = 0; i < jaggedArray.Length; i++)
+                for (int j = 0; j < jaggedArray[i].Length; j++)
+                {
+                    Console.WriteLine("Output [{0}][{1}]= {2}", i, j,jaggedArray[i][j]);
+                   
+                }
+            Console.ReadKey();
 
         }
     }

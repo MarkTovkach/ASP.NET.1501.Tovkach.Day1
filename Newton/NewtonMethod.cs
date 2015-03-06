@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Newton
 {
-    class NewtonMethod
+    public static class NewtonMethod
     {
         /// <summary>
         /// The method returns a value equal to the root of n-th power of the number with a specified accuracy. 
@@ -17,6 +17,8 @@ namespace Newton
         /// <returns></returns>
         public static double RootOfNDegree(double x, double n, double eps)
         {
+            if (n == 0) return 1;
+            if (x == 1) return 1;
             double x1;
             double x0 = x / 2;
             double a = x;
