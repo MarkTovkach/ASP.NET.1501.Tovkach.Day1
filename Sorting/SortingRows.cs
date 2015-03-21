@@ -6,77 +6,97 @@ using System.Threading.Tasks;
 
 namespace Sorting
 {
-    public static class SortingRows
+   public static class SortingRows : ISort
     {
-        public static int[][] BubbleSort( int[][] array, int[] arrayForSort, bool course)
+       
+        public static void Sort(int[][] array,bool course, ICompare comparer)
         {
-            int [] tempArray;
-
-            for (int i = 0; i < arrayForSort.Length; i++)
+            if (array == null)
             {
-                for (int j = i + 1; j < arrayForSort.Length; j++)
+                throw new ArgumentNullException("arrayForSort");
+            }
+            if (comparer == null)
+            {
+                throw new ArgumentNullException("compare");
+            }
+            //For Ascending
+           if (course)
+	       {
+               for (int i = 0; i < array.Length; i++)
+               {
+                   for (int j = i + 1; j < array.Length; j++)
+                   {
+                       if (comparer.Compare(array[i], array[j]) > 0)
+                       {
+                           var temp = array[i];
+                           array[i] = array[j];
+                           array[j] = temp;
+                       }
+                   }
+               }
+	       }
+           //For Descending
+           if (!course)
+           {
+               for (int i = 0; i < array.Length; i++)
+               {
+                   for (int j = i + 1; j < array.Length; j++)
+                   {
+                       if (comparer.Compare(array[i], array[j]) > 0)
+                       {
+                           var temp = array[j];
+                           array[j] = array[i];
+                           array[i] = temp;
+                       }
+                   }
+               }
+           }
+
+        }
+       public static void Sort(int [][] array,bool course,Func<int[], int[], int> comparer)
+       {
+           if (array == null)
+            {
+                throw new ArgumentNullException("arrayForSort");
+            }
+            if (comparer == null) 
+            {
+                throw new ArgumentNullException("compare");
+            }
+            //For Ascending
+            if (course)
+            {
+                for (int i = 0; i < array.Length; i++)
                 {
-                    if (course)
+                    for (int j = i + 1; j < array.Length; j++)
                     {
-                        if (arrayForSort[j] < arrayForSort[i])
+                        if (comparer(array[i], array[j]) > 0)
                         {
-                            Swap(ref arrayForSort[j], ref arrayForSort[i]);
-                            tempArray = array[j];
-                            array[j] = array[i];
-                            array[i] = tempArray;
-                        }
-                    }
-                    else
-                    {
-                        if (arrayForSort[j] > arrayForSort[i])
-                        {
-                            Swap(ref arrayForSort[j], ref arrayForSort[i]);
-                            tempArray = array[j];
-                            array[j] = array[i];
-                            array[i] = tempArray;
+                            var temp = array[i];
+                            array[i] = array[j];
+                            array[j] = temp;
                         }
                     }
                 }
             }
-            return array;
-        }
-        public static void Swap(ref int firstElement, ref int secondElement)
-        {
-            int temp = firstElement;
-            firstElement = secondElement;
-            secondElement = temp;
-        }
-        public static int[][] SortBySum(int[][] array, bool course)
-       {
-           int[] arrayForSort = new int[array.Length];
-           for (int i = 0; i < array.Length; i++)
-           {
-               arrayForSort[i] = array[i].Sum();
-           }
-           BubbleSort( array, arrayForSort, course);
-           return array;
-       }
-        public static int[][] SortByMax(int[][] array, bool course) 
-       {
-           int[] arrayForSort = new int[array.Length];
-           for (int i = 0; i < array.Length; i++)
-           {
-               arrayForSort[i] = array[i].Max();
+            //For Descending
+            if (!course)
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    for (int j = i + 1; j < array.Length; j++)
+                    {
+                        if (comparer(array[i], array[j]) > 0)
+                        {
+                            var temp = array[j];
+                            array[j] = array[i];
+                            array[i] = temp;
+                        }
+                    }
+                }
             }
-           BubbleSort(array, arrayForSort, course);
-           return array;
-       }
 
-        public static int[][] SortByMin(int[][] array, bool course) 
-       {
-           int[] arrayForSort = new int[array.Length];
-           for (int i = 0; i < array.Length; i++)
-           {
-               arrayForSort[i] = array[i].Min();
-            }
-           BubbleSort(array, arrayForSort, course);
-           return array;
-       }
 
+       }
     }
 }

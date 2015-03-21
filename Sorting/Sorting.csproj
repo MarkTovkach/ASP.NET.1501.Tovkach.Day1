@@ -41,9 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleUI.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortingRows.cs" />
+    <Compile Include="ConsoleUI.cs" />
+    <Compile Include="ICompare.cs" />
+    <Compile Include="ISort.cs" />
+    <Compile Include="LengthCompare.cs" />
+    <Compile Include="MaxAbsoluteCompare.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SumCompare.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
